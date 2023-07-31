@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d2685faf17.js" crossorigin="anonymous"></script>
+    <title>Calculator</title>
+</head>
+<body>
+    <style>
+        * {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+}
+
+.main {
+    width: 350px;
+    height: 480px;
+    top: 10%;
+    left: 36%;
+    background: rgb(97, 96, 96);
+    position: absolute;
+    border-radius: 5px;
+}
+
+.top {
+    position: relative;
+    height: 130px;
+    width: 100%;
+    background: black;
+    margin-bottom: 25px;   
+    border-radius: 5px;
+}
+
+.top .content {
+    position: absolute;
+    width: 95%;
+    height: 90%;
+    margin-top: 2%;
+    margin-left: 2.5%;
+    background: white;
+    border-radius: 5px;
+    display: block;
+}
+
+.content .equation {
+    width: 90%;
+    height: 50%;
+    margin-left: 5%;
+}
+
+.equation p {
+    position: absolute;
+    font-size: xx-large;
+    margin-top: 9px;
+}
+
+.content .answer {
+    position: absolute;
+    width: 90%;
+    height: 50%;
+    margin-left: 5%;
+    align-items: center;
+}
+
+.answer p {
+    text-align: right;
+    font-size: xx-large;
+    margin-top: 9px;
+}
+
+.bottom {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    row-gap: 10px;
+    column-gap: 30px;
+    justify-content: center;
+}
+
+.bottom button {
+    width: 60px;
+    height: 50px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    outline: none;
+}
+
+
+.gry:hover {
+    background: lightgrey;
+}
+
+.gry {
+    background: grey;
+}
+
+.clr {
+    background-color:#FFA500;
+}
+
+.clr:hover {
+    background: #FFD580;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .main {
+        left: 17%;
+        top: 22%;
+        width: 550px;
+        height: 575px;
+    }
+
+    .bottom button {
+        width: 80px;
+        height: 70px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .main {
+        left: 19%;
+        top: 22%;
+        width: 450px;
+        height: 550px;
+    }
+
+    .bottom button {
+        width: 70px;
+        height: 60px;
+    }
+
+}
+
+@media screen and (max-width: 540px) {
+
+    .main {
+        left: 4.5%;
+        top: 15%;
+        margin-left: 13%;
+        width: 350px;
+        height: 480px;
+    }
+
+    .bottom button {
+        width: 55px;
+        height: 50px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .main {
+        left: 4.5%;
+        top: 19%;
+        margin-left: 2.7%;
+        width: 350px;
+        height: 480px;
+    }
+
+    .bottom button {
+        width: 55px;
+        height: 50px;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+
+    .main {
+        left: 1%;
+        top: 19%;
+        margin-left: 4.5%;
+        width: 350px;
+        height: 480px;
+    }
+
+    .bottom button {
+        width: 55px;
+        height: 50px;
+    }
+    
+}
+
+@media screen and (max-width: 360px) {
+
+    .main {
+        left: 1%;
+        top: 19%;
+        margin-left: 7%;
+        width: 300px;
+    }
+
+    .bottom {
+        row-gap: 10px;
+        column-gap: 15px;
+    }
+    
+}
+
+@media screen and (max-width: 300px) {
+
+    .main {
+        left: 1%;
+        top: 13%;
+        margin-left: 5%;
+        width: 250px;
+        height: 415px;
+    }
+
+    .bottom {
+        row-gap: 5px;
+        column-gap: 10px;
+    }
+
+    .bottom button {
+        width: 50px;
+        height: 40px;
+    }
+    
+}
+   </style>
+    <div class="main">
+        <div class="top">
+            <div class="content">
+                <div class="equation">
+                    <p id="equation">0</p>
+                </div>
+                <div class="answer">
+                    <p id="answer"></p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <button class="clr" id="clear">C</button>
+            <button class="clr" id="remove"><i class="fa-solid fa-delete-left"></i></button>
+            <button class="clr" onclick="document.getElementById('equation').innerHTML += '%' ">%</button>
+            <button class="clr" onclick="carryOver(); document.getElementById('equation').innerHTML += '/' ">/</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '1' ">1</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '2' ">2</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '3' ">3</button>
+            <button class="clr" value="*" onclick="carryOver(); document.getElementById('equation').innerHTML += '*' ">×</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '4' ">4</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '5' ">5</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '6' ">6</button>
+            <button class="clr" onclick="carryOver(); document.getElementById('equation').innerHTML += '-' ">–</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '7' ">7</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '8' ">8</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '9' ">9</button>
+            <button class="clr" onclick="carryOver(); document.getElementById('equation').innerHTML += '+' ">+</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '00' ">00</button>
+            <button class="gry" onclick="zero(); document.getElementById('equation').innerHTML += '0' ">0</button>
+            <button class="clr" onclick="document.getElementById('equation').innerHTML += '.' ">.</button>
+            <button class="clr" id="equal">=</button>
+        </div>
+    </div>
+    <script>
+        const equationElement = document.getElementById('equation');
+const answerElement = document.getElementById('answer');
+const deleteButton = document.getElementById('remove');
+const clear = document.getElementById('clear');
+const equal = document.getElementById('equal')
+const content = equationElement.innerHTML;
+
+
+function deleteLastNumber() {
+    const equationText = equationElement.innerHTML;
+
+    if (equationText.length > 0) {
+        // Remove the last character (number) from the text content
+        const updatedText = equationText.slice(0, -1);
+       // If the content is empty after removing the last character, set it to "0"
+        equationElement.innerHTML = updatedText.length > 0 ? updatedText : '0';
+    }
+}
+
+// Attach a click event listener to the button
+deleteButton.addEventListener('click', deleteLastNumber);
+
+function clears() {
+
+    if (equationElement.textContent.length > 0 && answerElement.textContent.length > 0) {
+       equationElement.innerHTML = '0' 
+       answerElement.innerHTML = ''
+    } else if (equationElement.textContent.length > 0) {
+        equationElement.innerHTML = '0'
+    }
+
+}
+
+// Attach a click event listener to the clear button
+clear.addEventListener('click', clears)
+
+//Evaluates the equation
+function evaluate() {
+
+    answerElement.innerHTML = eval(equationElement.innerHTML).toFixed(2)
+
+}
+
+equal.addEventListener('click', evaluate)
+
+function zero() {
+
+    if (equationElement.innerHTML.length > 0 && equationElement.innerHTML.toString()[0] === "0") {
+
+        const updatedInput = equationElement.innerHTML.slice(1)
+        
+        equationElement.innerHTML = updatedInput
+    }
+    
+}
+
+function carryOver() {
+
+    if(answerElement.innerHTML != '') {
+
+        const newContent = answerElement.innerHTML
+
+        equationElement.innerHTML = Number(newContent).toFixed(1)
+    }
+
+}
+
+function checkLength() {
+    const length = equationElement.innerHTML.length;
+    const leng = answerElement.innerHTML.length
+    //console.log('Length of equation innerHTML:', length);
+    if (length > 15) {
+        equationElement.innerHTML = 'Error'
+    } else if (leng > 15) {
+        answerElement.innerHTML = "Error"
+    }
+}
+
+// Call the checkLength function every 1 second (1000 milliseconds)
+setInterval(checkLength, 50);
+    </script>
+</body>
+</html>
