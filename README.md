@@ -59,9 +59,7 @@ Please adhere to this project's `code of conduct`.
 
 Yes, It work's on all devices.
 
-## Screenshots
 
-![App Screenshot]
 
 ## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://stellar-dango-dc6167.netlify.app/)
